@@ -15,8 +15,9 @@ import use_case.signup.SignupUserDataAccessInterface;
 public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterface,
                                                      LoginUserDataAccessInterface,
                                                      ChangePasswordUserDataAccessInterface {
-
     private final Map<String, User> users = new HashMap<>();
+
+    private String currentUser;
 
     @Override
     public boolean existsByName(String identifier) {
@@ -35,6 +36,12 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
 
     @Override
     public void setCurrentUser(String name) {
+        this.currentUser = name;
+    }
+
+    @Override
+    public String getCurrentUser() {
+        return this.currentUser;
     }
 
     @Override
